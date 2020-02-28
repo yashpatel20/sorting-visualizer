@@ -2,12 +2,13 @@ import React,{useState, useEffect} from 'react'
 import './SortingVisualizer.css'
 import getMergeSortAnimations from './SortingAlgorithms/getMergeSortAnimations'
 import getBubbleSortAnimations from './SortingAlgorithms/getBubbleSortAnimations';
+import getQuickSortAnimations from './SortingAlgorithms/getQuickSortAnimations'
 
 // Change this value for the speed of the animations.
 const ANIMATION_SPEED_MS = 0.1;
 
 // Change this value for the number of bars (value) in the array.
-const NUMBER_OF_ARRAY_BARS = 50;
+const NUMBER_OF_ARRAY_BARS = 320;
 
 // This is the main color of the array bars.
 const PRIMARY_COLOR = 'turquoise';
@@ -88,6 +89,10 @@ function SortingVisualizer(){
         }
     }
 
+    const quickSort = () => {
+        getQuickSortAnimations([3,1,6,5,10,2])
+    }
+
 
     const arrVal = arr.map((value,idx) => <div style={{height : `${value}px`}} className="array-bar" key={idx}></div>)
     return (
@@ -100,6 +105,7 @@ function SortingVisualizer(){
             }}>Generate New Array</button>
             <button onClick={mergeSort}>Merge Sort</button>
             <button onClick={bubbleSort}>Bubble Sort</button>
+            <button onClick={quickSort}>Bubble Sort</button>
         </div>
     )
 }
