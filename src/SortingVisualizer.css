@@ -1,13 +1,22 @@
 .array-container{
+    margin-top: 30px;
     width: 100%;
     height: 100%;
-    left: 40px;
+    
 }
 
 .array-bar{
-    width: 2px;
     background-color: turquoise;
     display: inline-block;
-    margin: 0 1px;
 
 }
+
+.generateArray{
+    margin: 4px 4px 4px 4px;
+}
+
+.sort{
+    margin: 4px 4px 4px 4px;
+}
+
+
