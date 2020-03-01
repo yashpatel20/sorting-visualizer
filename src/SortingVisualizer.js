@@ -1,8 +1,9 @@
 import React,{useState, useEffect} from 'react'
 import './SortingVisualizer.css'
 import getMergeSortAnimations from './SortingAlgorithms/getMergeSortAnimations'
-import getBubbleSortAnimations from './SortingAlgorithms/getBubbleSortAnimations';
+import getBubbleSortAnimations from './SortingAlgorithms/getBubbleSortAnimations'
 import getQuickSortAnimations from './SortingAlgorithms/getQuickSortAnimations'
+import getHeapSortAnimations from './SortingAlgorithms/getHeapSortAnimations'
 
 // Change this value for the speed of the animations.
 const ANIMATION_SPEED_MS = 2
@@ -117,6 +118,34 @@ function SortingVisualizer(){
     }
 
 
+    const heapSort = () => {
+        const animations = getHeapSortAnimations(arr)
+        for(let i=0;i<animations.length;i++){
+            const arrayBars = document.getElementsByClassName('array-bar')
+            const isColorChange = (animations[i].length === 3 )
+            if(isColorChange){
+                const [barOneIdx,barTwoIdx] = animations[i]
+                const barOneStyle = arrayBars[barOneIdx].style
+                const barTwoStyle = arrayBars[barTwoIdx].style
+                const color = animations[i][2] ? SECONDARY_COLOR : PRIMARY_COLOR
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                  }, i * ANIMATION_SPEED_MS);
+            }else{
+                setTimeout(() => {
+                    const bar = animations[i]
+                    const barOneStyle = arrayBars[bar[0]].style
+                    const barTwoStyle = arrayBars[bar[2]].style
+                    barOneStyle.height = `${bar[1]}px`
+                    barTwoStyle.height = `${bar[3]}px`
+                  }, i * ANIMATION_SPEED_MS);
+            }
+
+        }
+    }
+
+
     const numWidth = Math.floor(window.screen.width / (arr.length * 3));
     console.log("width: "+window.screen.width)
     console.log("width: "+window.screen.height)
@@ -146,7 +175,7 @@ function SortingVisualizer(){
                 <button className='sort' onClick={bubbleSort}>Bubble Sort</button>
                 <button className='sort' onClick={mergeSort}>Merge Sort</button>
                 <button className='sort' onClick={quickSort}>Quick Sort</button>
-                <button className='sort' onClick={quickSort}>Heap Sort</button>
+                <button className='sort' onClick={heapSort}>Heap Sort</button>
                 <button className='sort' onClick={quickSort}>Counting Sort</button>
                 <button className='sort' onClick={quickSort}>Radix Sort</button>
             </div>
