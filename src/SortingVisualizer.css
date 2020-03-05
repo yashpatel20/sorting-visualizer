@@ -1,22 +1,25 @@
-.array-container{
-    margin-top: 30px;
-    width: 100%;
-    height: 100%;
-    
+.array-container {
+  margin-top: 30px;
+  width: 100%;
+  height: 100%;
 }
 
-.array-bar{
-    background-color: turquoise;
-    display: inline-block;
-
+.buttons {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-.generateArray{
-    margin: 4px 4px 4px 4px;
+.array-bar {
+  background-color: turquoise;
+  display: inline-block;
 }
 
-.sort{
-    margin: 4px 4px 4px 4px;
+.generateArray {
+  padding: 5px;
 }
 
-
+.sort {
+  padding: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
