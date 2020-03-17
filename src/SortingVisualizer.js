@@ -4,6 +4,7 @@ import getMergeSortAnimations from "./SortingAlgorithms/getMergeSortAnimations";
 import getBubbleSortAnimations from "./SortingAlgorithms/getBubbleSortAnimations";
 import getQuickSortAnimations from "./SortingAlgorithms/getQuickSortAnimations";
 import getHeapSortAnimations from "./SortingAlgorithms/getHeapSortAnimations";
+import getRadixSortAnimations from "./SortingAlgorithms/getRadixSortAnimations";
 import Button from "@material-ui/core/Button";
 
 // Change this value for the speed of the animations.
@@ -145,6 +146,27 @@ function SortingVisualizer() {
     }
   };
 
+  const radixSort = () => {
+    const animations = getRadixSortAnimations(arr);
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName("array-bar");
+      if (animations[i].length === 2) {
+        const barOneIdx = animations[i][0];
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const color = animations[i][1] ? SECONDARY_COLOR : PRIMARY_COLOR;
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+        }, i * ANIMATION_SPEED_MS);
+      } else {
+        setTimeout(() => {
+          const barOneIdx = animations[i][0];
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${animations[i][1]}px`;
+        }, i * ANIMATION_SPEED_MS);
+      }
+    }
+  };
+
   const numWidth = Math.floor(window.screen.width / (arr.length * 3));
   console.log("width: " + window.screen.width);
   console.log("width: " + window.screen.height);
@@ -258,18 +280,7 @@ function SortingVisualizer() {
             size="small"
             color="primary"
             className="sort"
-            onClick={quickSort}
-          >
-            Counting Sort
-          </Button>
-        </span>
-        <span className="sort">
-          <Button
-            variant="contained"
-            size="small"
-            color="primary"
-            className="sort"
-            onClick={quickSort}
+            onClick={radixSort}
           >
             Radix Sort
           </Button>
