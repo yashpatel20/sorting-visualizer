@@ -148,6 +148,29 @@ function SortingVisualizer() {
 
   const radixSort = () => {
     const animations = getRadixSortAnimations(arr);
+    console.log(animations);
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName("array-bar");
+      if (animations[i].length === 2) {
+        const barOneIdx = animations[i][0];
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const color = animations[i][1] ? SECONDARY_COLOR : PRIMARY_COLOR;
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+        }, i * ANIMATION_SPEED_MS);
+      } else {
+        setTimeout(() => {
+          const barOneIdx = animations[i][0];
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${animations[i][1]}px`;
+        }, i * ANIMATION_SPEED_MS);
+      }
+    }
+  };
+
+  const bucketSort = () => {
+    const animations = getRadixSortAnimations(arr);
+    console.log(animations);
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName("array-bar");
       if (animations[i].length === 2) {
@@ -269,7 +292,7 @@ function SortingVisualizer() {
             size="small"
             color="primary"
             className="sort"
-            onClick={heapSort}
+            onClick={bucketSort}
           >
             Bucket Sort
           </Button>
