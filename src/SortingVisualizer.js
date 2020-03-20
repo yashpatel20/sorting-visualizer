@@ -5,6 +5,7 @@ import getBubbleSortAnimations from "./SortingAlgorithms/getBubbleSortAnimations
 import getQuickSortAnimations from "./SortingAlgorithms/getQuickSortAnimations";
 import getHeapSortAnimations from "./SortingAlgorithms/getHeapSortAnimations";
 import getRadixSortAnimations from "./SortingAlgorithms/getRadixSortAnimations";
+import getBogoSortAnimations from "./SortingAlgorithms/getBogoSortAnimations";
 import Button from "@material-ui/core/Button";
 
 // Change this value for the speed of the animations.
@@ -148,7 +149,6 @@ function SortingVisualizer() {
 
   const radixSort = () => {
     const animations = getRadixSortAnimations(arr);
-    console.log(animations);
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName("array-bar");
       if (animations[i].length === 2) {
@@ -168,26 +168,8 @@ function SortingVisualizer() {
     }
   };
 
-  const bucketSort = () => {
-    const animations = getRadixSortAnimations(arr);
-    console.log(animations);
-    for (let i = 0; i < animations.length; i++) {
-      const arrayBars = document.getElementsByClassName("array-bar");
-      if (animations[i].length === 2) {
-        const barOneIdx = animations[i][0];
-        const barOneStyle = arrayBars[barOneIdx].style;
-        const color = animations[i][1] ? SECONDARY_COLOR : PRIMARY_COLOR;
-        setTimeout(() => {
-          barOneStyle.backgroundColor = color;
-        }, i * ANIMATION_SPEED_MS);
-      } else {
-        setTimeout(() => {
-          const barOneIdx = animations[i][0];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          barOneStyle.height = `${animations[i][1]}px`;
-        }, i * ANIMATION_SPEED_MS);
-      }
-    }
+  const bogoSort = () => {
+    getBogoSortAnimations(arr);
   };
 
   const numWidth = Math.floor(window.screen.width / (arr.length * 3));
@@ -292,22 +274,22 @@ function SortingVisualizer() {
             size="small"
             color="primary"
             className="sort"
-            onClick={bucketSort}
-          >
-            Bucket Sort
-          </Button>
-        </span>
-        <span className="sort">
-          <Button
-            variant="contained"
-            size="small"
-            color="primary"
-            className="sort"
             onClick={radixSort}
           >
             Radix Sort
           </Button>
         </span>
+        {/* <span className="sort">
+          <Button
+            variant="contained"
+            size="small"
+            color="primary"
+            className="sort"
+            onClick={bogoSort}
+          >
+            Bogo Sort
+          </Button>
+        </span> */}
       </div>
     </div>
   );
