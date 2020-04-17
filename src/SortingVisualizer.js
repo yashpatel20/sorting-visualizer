@@ -200,7 +200,7 @@ function SortingVisualizer() {
         height: `${value}px`,
         width: width,
         marginLeft: margin,
-        marginRigh: margin
+        marginRigh: margin,
       }}
       className="array-bar"
       key={idx}
